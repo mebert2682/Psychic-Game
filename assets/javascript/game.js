@@ -7,7 +7,7 @@
     
     console.log(computerPick);
 
-   // Creating variables to hold the number of wins, losses, and ties. They start at 0.
+   // Creating variables to hold the number of wins, losses, guesses left and guessed letters. Wins/Losses start at 0. guessesLeft starts at 9. And guessedLetters starts with no value.
     var wins = 0;
     var losses = 0;
     var guessesLeft = 9;
@@ -19,7 +19,6 @@
     var winsText = document.getElementById("wins-text");
     var lossesText = document.getElementById("losses-text");
     var guessesLeftText = document.getElementById("guessesleft-text");
-    var userGuessText = document.getElementById("userguess-text");
     var guessedLettersText = document.getElementById ("guessedletters-text");
     
 
@@ -28,17 +27,19 @@
 
       // Determines which key was pressed.
       var userGuess = event.key;
-      
+      // Creates stored list of letters guessed so far.
       guessedLetters.push(userGuess);
      
-      console.log(userGuess);
-      console.log(guessedLetters)
+      //console.log(userGuess);
+      //console.log(guessedLetters)
+     
       // Only run the following code block if the user's guess matches the computer's pick.
       if ((userGuess === computerPick)) {
         wins++;        
         guessesLeft = 9;
+        guessedLetters = [];
         computerPick = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-        console.log(computerPick);
+        //console.log(computerPick);
       }
 
 
@@ -53,16 +54,13 @@
         if((guessesLeft === 0)){
             losses++;
             guessesLeft = 9;
+            guessedLetters = [];
           } 
-       
-        //if ((userGuess !== computerChoices)) {
-        //  confirm("Please press any letter key A - Z!");
-        //  }
 
 
       }
 
-      // Display the user and computer guesses, and wins/losses/ties.
+      // Display the user and computer guesses, and wins/losses/guesses left/guesses so far.
       winsText.textContent = "wins: " + wins;
       lossesText.textContent = "losses: " + losses;
       guessesLeftText.textContent = "guesses left: " + guessesLeft;
